@@ -8,7 +8,7 @@ const databaseId = process.env.NOTION_DATABASE_ID ?? ''
 export const getPages = async () => {
   const data = await notionClient.databases.query({
     database_id: databaseId,
-    sorts: [{ property: 'CreatedTime', direction: 'ascending' }],
+    sorts: [{ timestamp: 'created_time', direction: 'ascending' }],
   })
   return data.results
 }

@@ -25,8 +25,8 @@ export async function generateStaticParams() {
 
   return pages.reduce((acc, curr) => {
     if (isFullPage(curr)) {
-      const createdTime = format(new Date(curr.created_time), 'yyyy-MM-dd-HHmmss')
-      acc.push({ slug: [...createdTime.split('-'), curr.id] })
+      const createdTime = format(new Date(curr.created_time), 'yyyy/MM/dd/HHmmss')
+      acc.push({ slug: [...createdTime.split('/'), curr.id] })
     }
     return acc
   }, [] as { slug: string[] }[])
