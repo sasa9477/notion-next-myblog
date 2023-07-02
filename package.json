@@ -9,9 +9,11 @@
     "lint": "next lint",
     "format": "prettier --write 'src/**/*.{ts,tsx,json}'",
     "lint:fix": "next lint --fix && npm run format",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "postinstall": "patch-package"
   },
   "dependencies": {
+    "@notionhq/client": "^2.2.6",
     "@types/node": "20.3.3",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
@@ -28,6 +30,7 @@
   "devDependencies": {
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
+    "patch-package": "^7.0.0",
     "prettier": "^2.8.8"
   },
   "lint-staged": {
