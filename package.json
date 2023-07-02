@@ -27,14 +27,15 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-markdown": "^8.0.7",
-    "tailwindcss": "3.3.2",
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@unocss/postcss": "^0.53.4",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
     "patch-package": "^7.0.0",
-    "prettier": "^2.8.8"
+    "prettier": "^2.8.8",
+    "unocss": "^0.53.4"
   },
   "lint-staged": {
     "./**/*.{ts,tsx,json}": "yarn lint"
