@@ -1,6 +1,19 @@
 import { isFullPage } from '@notionhq/client'
 import { format } from 'date-fns'
+import ja from 'date-fns/locale/ja'
 import { getPages } from '@/utils/notion'
+
+export type IndexItem = {
+  id: string
+  title: string
+  date: string
+  tags: {
+    id: string
+    name: string
+    color: string
+  }[]
+  path: string
+}
 
 export default async function Home() {
   const pages = await getPages()
@@ -8,28 +21,40 @@ export default async function Home() {
     if (isFullPage(curr)) {
       const titleObj = curr.properties.Title
       const title = titleObj.type === 'title' ? titleObj.title[0].plain_text : 'No Title'
+      const date = format(new Date(curr.created_time), 'MMMMdo', { locale: ja })
+      const tagsObj = curr.properties.Tags
+      const tags = tagsObj.type === 'multi_select' ? tagsObj.multi_select : []
       const createdTime = format(new Date(curr.created_time), 'yyyy/MM/dd/HHmmss')
-      acc.push({ id: curr.id, title: title, path: `/entry/${createdTime}/${curr.id}` })
+      acc.push({ id: curr.id, title, date, tags, path: `/entry/${createdTime}/${curr.id}` })
     }
     return acc
-  }, [] as { id: string; title: string; path: string }[])
+  }, [] as IndexItem[])
 
   return (
-    <main className={'flex min-h-screen flex-col items-center justify-between p-24'}>
-      {indexes.map(({ id, title, path }) => (
-        <a key={id} href={path} className={'flex flex-col items-center justify-between p-24'}>
-          {title}
-        </a>
-      ))}
-      <button
-        bg={'blue-400 hover:blue-500 dark:blue-500 dark:hover:blue-600'}
-        text={'sm white'}
-        font={'mono light'}
-        p={'y-2 x-4'}
-        border={'2 rounded blue-200'}
-      >
-        Button
-      </button>
-    </main>
+    <>
+      <div p={'y-8 x-4'} bg={'header-bg'} pos={'sticky'}>
+        <header>
+          <h1 text={'4xl'}>日常ログ</h1>
+          <h2 m={'t-4'}>開発とか日常とかのログを残すブログ</h2>
+        </header>
+      </div>
+
+      <main className={'p-6'}>
+        <ul space={'y-4'}>
+          {indexes.map(({ id, title, date, tags, path }) => (
+            <li key={id} flex hover={'underline opacity-60'}>
+              <a href={path} className={''}>
+                {date} {title}
+                {tags.map(({ id, name, color }) => (
+                  <span key={id} bg={color === 'blue' ? 'blue' : color === 'brown' ? 'brown' : ''}>
+                    {name}
+                  </span>
+                ))}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </main>
+    </>
   )
 }
