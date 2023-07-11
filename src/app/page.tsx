@@ -32,9 +32,9 @@ export default async function Home() {
 
   return (
     <>
-      <div p={'y-8 x-4'} bg={'header-bg'} pos={'sticky'}>
+      <div p={'y-8 x-4'} bg={'primary'} pos={'sticky'}>
         <header>
-          <h1 text={'4xl'}>日常ログ</h1>
+          <h1 text={'4xl'}>開発ログ</h1>
           <h2 m={'t-4'}>開発とか日常とかのログを残すブログ</h2>
         </header>
       </div>
@@ -42,11 +42,11 @@ export default async function Home() {
       <main className={'p-6'}>
         <ul space={'y-4'}>
           {indexes.map(({ id, title, date, tags, path }) => (
-            <li key={id} flex hover={'underline opacity-60'}>
-              <a href={path} className={''}>
+            <li key={id} flex='' hover={'underline opacity-60'}>
+              <a href={path}>
                 {date} {title}
                 {tags.map(({ id, name, color }) => (
-                  <span key={id} bg={color === 'blue' ? 'blue' : color === 'brown' ? 'brown' : ''}>
+                  <span key={id} className={`bg-${color}`}>
                     {name}
                   </span>
                 ))}

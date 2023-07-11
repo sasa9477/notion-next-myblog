@@ -1,25 +1,13 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": ["next/core-web-vitals"],
   "rules": {
-    "react/jsx-curly-brace-presence": [
-      "error",
-      { "props": "always", "children": "ignore", "propElementValues": "always" }
-    ],
     "react/jsx-pascal-case": "error",
     "react/self-closing-comp": "error",
     "react/jsx-boolean-value": "error",
     "import/order": [
       "error",
       {
-        "groups": [
-          "builtin",
-          "external",
-          "parent",
-          "sibling",
-          "index",
-          "object",
-          "type"
-        ],
+        "groups": ["builtin", "external", "parent", "sibling", "index", "object", "type"],
         "pathGroups": [
           {
             "pattern": "{react,react-dom/**,react-router-dom}",

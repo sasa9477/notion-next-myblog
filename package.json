@@ -30,12 +30,14 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@unocss/eslint-config": "^0.53.4",
     "@unocss/postcss": "^0.53.4",
     "encoding": "^0.1.13",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.3",
+    "npm-run-all": "^4.1.5",
     "patch-package": "^7.0.0",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.0",
     "unocss": "^0.53.4"
   },
   "lint-staged": {

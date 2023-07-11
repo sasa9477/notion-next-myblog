@@ -1,0 +1,23 @@
+@import '@unocss/reset/tailwind.css';
+@unocss all;
+
+:root {
+  --primary: 104, 162, 165;
+  --accent: 165, 107, 104;
+  --background: 247, 247, 247;
+  --primary-text: 51, 51, 51;
+  --link: 69, 126, 215;
+}
+
+/* @media (prefers-color-schem: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+} */
+
+body {
+  color: rgb(var(--primary-text));
+  background: rgb(var(--background));
+}
