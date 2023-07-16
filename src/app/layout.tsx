@@ -1,7 +1,12 @@
+import { Noto_Sans_JP } from 'next/font/google'
+import { Header } from '@/components/header'
 import '@/styles/globals.css'
-import { Inter } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+const notoSansJp = Noto_Sans_JP({
+  weight: ['400', '500', '700', '900'],
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export const metadata = {
   title: 'SasaBlog',
@@ -11,7 +16,12 @@ export const metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang={'ja'}>
-      <body className={inter.className}>{children}</body>
+      <body className={notoSansJp.className}>
+        <Header />
+        <div className={'max-w-5xl'} m={'auto'}>
+          {children}
+        </div>
+      </body>
     </html>
   )
 }
